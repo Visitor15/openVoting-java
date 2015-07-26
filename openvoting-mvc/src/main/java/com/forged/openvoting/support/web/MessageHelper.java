@@ -1,9 +1,9 @@
 package com.forged.openvoting.support.web;
 
-import static com.forged.openvoting.support.web.Message.MESSAGE_ATTRIBUTE;
-
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import static com.forged.openvoting.support.web.Message.MESSAGE_ATTRIBUTE;
 
 public final class MessageHelper {
 

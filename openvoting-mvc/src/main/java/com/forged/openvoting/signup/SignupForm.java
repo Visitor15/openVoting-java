@@ -1,8 +1,8 @@
 package com.forged.openvoting.signup;
 
-import org.hibernate.validator.constraints.*;
-
 import com.forged.openvoting.account.Account;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class SignupForm {
 

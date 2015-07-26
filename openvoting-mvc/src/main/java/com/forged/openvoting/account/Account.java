@@ -1,8 +1,8 @@
 package com.forged.openvoting.account;
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
