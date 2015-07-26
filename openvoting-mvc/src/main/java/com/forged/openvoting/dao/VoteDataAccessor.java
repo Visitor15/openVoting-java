@@ -4,6 +4,8 @@ import com.forged.openvoting.voting_system.data.Vote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,7 +28,8 @@ public class VoteDataAccessor implements DataAccessor<Vote>{
 
     @Override
     public Vote findById(String id) {
-        return null;
+        Vote foundVote = mongoTemplate.findOne(buildQueryToFindById(id), Vote.class, collectionName);
+        return foundVote;
     }
 
     @Override
@@ -37,5 +40,9 @@ public class VoteDataAccessor implements DataAccessor<Vote>{
     @Override
     public void delete(Vote vote) {
 
+    }
+
+    private Query buildQueryToFindById(final String id) {
+        return new Query().addCriteria(Criteria.where("id").is(id));
     }
 }

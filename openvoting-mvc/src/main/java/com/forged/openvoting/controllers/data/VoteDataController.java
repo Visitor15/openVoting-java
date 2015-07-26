@@ -35,7 +35,7 @@ public class VoteDataController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/vote/{voteId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/vote/{voteId}", method = RequestMethod.GET, produces="application/json")
     public Vote getVote(@PathVariable String voteId) {
         return voteDataAccessor.findById(voteId);
     }

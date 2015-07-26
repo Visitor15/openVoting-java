@@ -1,5 +1,6 @@
 package com.forged.openvoting.voting_system.data;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +13,8 @@ import java.util.Set;
 /**
  * Created by visitor15 on 7/25/15.
  */
-@Data
 @Builder
+@JsonAutoDetect
 @AllArgsConstructor
 public class Vote {
 
@@ -43,6 +44,34 @@ public class Vote {
         description = "";
         summary = "";
         reasonsForVote = new HashSet<String>();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Long getUpVoteCount() {
+        return upVoteCount;
+    }
+
+    public Long getDownVoteCount() {
+        return downVoteCount;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public Set<String> getReasonsForVote() {
+        return reasonsForVote;
     }
 }
 
