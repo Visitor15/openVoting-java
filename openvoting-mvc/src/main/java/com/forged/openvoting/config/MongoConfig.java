@@ -1,6 +1,8 @@
 package com.forged.openvoting.config;
 
 import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
@@ -17,9 +19,18 @@ import java.net.UnknownHostException;
 @Configuration
 class MongoConfig {
 
+    @Value(value = "${mongodb.host}")
+    private String host;
+
+    @Value(value = "${mongodb.port}")
+    private Integer port;
+
+    @Value(value = "${mongodb.database-name}")
+    private String dbName;
+
     @Bean
     public MongoDbFactory mongoDbFactory() throws UnknownHostException {
-        return new SimpleMongoDbFactory(new Mongo(), "openvoting-mvc");
+        return new SimpleMongoDbFactory(new MongoClient(host, port), dbName);
     }
 
     @Bean
