@@ -12,7 +12,7 @@ import java.util.Set;
  * Created by visitor15 on 7/25/15.
  */
 @JsonAutoDetect
-public class Ballot {
+public class Ballot extends ErrorProneEntity {
 
     @Id
     public String id;

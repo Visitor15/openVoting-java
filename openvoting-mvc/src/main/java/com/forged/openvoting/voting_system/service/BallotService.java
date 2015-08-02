@@ -38,20 +38,20 @@ public class BallotService {
         BallotSubmissionResultDTO ballotSubmissionResultDTO;
         Ballot ballotToSubmit = Ballot.from(ballotDTO);
         if(!ballotSubmissionValidator.validate(ballotToSubmit)) {
-            ballotSubmissionResultDTO = generateFailedBallotSubmissionResponse(ballotDTO);
+            ballotSubmissionResultDTO = generateFailedBallotSubmissionResponse(ballotToSubmit);
         } else {
             ballotDataAccessor.save(ballotToSubmit);
-            ballotSubmissionResultDTO = generateSucceededBallotSubmissionResponse(ballotDTO);
+            ballotSubmissionResultDTO = generateSucceededBallotSubmissionResponse(ballotToSubmit);
         }
         return ballotSubmissionResultDTO;
     }
 
-    private BallotSubmissionResultDTO generateFailedBallotSubmissionResponse(final BallotDTO ballotDTO) {
-        BallotSubmissionResultDTO ballotSubmissionResultDTO = new BallotSubmissionResultDTO(ResultType.FAILURE, "Error submitting ballot");
+    private BallotSubmissionResultDTO generateFailedBallotSubmissionResponse(final Ballot ballot) {
+        BallotSubmissionResultDTO ballotSubmissionResultDTO = new BallotSubmissionResultDTO(ResultType.FAILURE, ballot.getErrorMessages());
         return ballotSubmissionResultDTO;
     }
 
-    private BallotSubmissionResultDTO generateSucceededBallotSubmissionResponse(final BallotDTO ballotDTO) {
+    private BallotSubmissionResultDTO generateSucceededBallotSubmissionResponse(final Ballot ballotDTO) {
         BallotSubmissionResultDTO ballotSubmissionResultDTO = new BallotSubmissionResultDTO(ResultType.SUCCESS, "Successfully submitted ballot");
         return ballotSubmissionResultDTO;
     }

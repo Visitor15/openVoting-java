@@ -41,6 +41,6 @@ public class BallotDataAccessor implements DataAccessor<Ballot> {
     }
 
     private Query buildQueryToFindById(final String id) {
-        return new Query().addCriteria(Criteria.where("id").is(id));
+        return new Query().addCriteria(Criteria.where("_id").is(id));
     }
 }
