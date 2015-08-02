@@ -4,6 +4,7 @@ import com.forged.openvoting.dto.BallotDTO;
 import com.forged.openvoting.dto.BallotSubmissionResultDTO;
 import com.forged.openvoting.voting_system.builders.BallotBuilder;
 import com.forged.openvoting.voting_system.data.BallotGroup;
+import com.forged.openvoting.voting_system.data.Location;
 import com.forged.openvoting.voting_system.service.BallotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,6 +53,7 @@ public class BallotController {
                     add("Reason 2.");
                     add("Reason 3.");
                 }})
+                .setLocation(new Location())
                 .build());
     }
 }

@@ -2,6 +2,7 @@ package com.forged.openvoting.voting_system.builders;
 
 import com.forged.openvoting.voting_system.data.Ballot;
 import com.forged.openvoting.voting_system.data.BallotGroup;
+import com.forged.openvoting.voting_system.data.Location;
 
 import java.util.Date;
 import java.util.Set;
@@ -27,6 +28,8 @@ public class BallotBuilder implements Builder<Ballot> {
 
     private BallotGroup ballotGroup;
 
+    private Location location;
+
     public BallotBuilder builder() {
         return (instance == null) ? new BallotBuilder() : instance;
     }
@@ -46,7 +49,8 @@ public class BallotBuilder implements Builder<Ballot> {
                 upVoteCount,
                 downVoteCount,
                 ballotGroup,
-                reasonForBallot);
+                reasonForBallot,
+                location);
     }
 
     public BallotBuilder setId(final String id) {
@@ -91,6 +95,11 @@ public class BallotBuilder implements Builder<Ballot> {
 
     public BallotBuilder setReasonForBallot(final Set<String> reasonForBallot) {
         this.reasonForBallot = reasonForBallot;
+        return instance;
+    }
+
+    public BallotBuilder setLocation(final Location location) {
+        this.location = location;
         return instance;
     }
 }

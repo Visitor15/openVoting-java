@@ -12,7 +12,7 @@ import java.util.Set;
  * Created by visitor15 on 7/25/15.
  */
 @JsonAutoDetect
-public class Ballot extends ErrorProneEntity {
+public class Ballot extends LocationAwareEntity {
 
     @Id
     public String id;
@@ -29,6 +29,8 @@ public class Ballot extends ErrorProneEntity {
     private Set<String> reasonsForBallot;
 
     private BallotGroup ballotGroup;
+
+    private Location location;
 
     public Ballot() {
         id = "";
@@ -50,7 +52,8 @@ public class Ballot extends ErrorProneEntity {
                   final Long upVoteCount,
                   final Long downVoteCount,
                   final BallotGroup ballotGroup,
-                  final Set<String> reasonsForBallot) {
+                  final Set<String> reasonsForBallot,
+                  final Location location) {
         this.id                 = id;
         this.title              = title;
         this.description        = description;
@@ -60,6 +63,7 @@ public class Ballot extends ErrorProneEntity {
         this.downVoteCount      = downVoteCount;
         this.reasonsForBallot   = reasonsForBallot;
         this.ballotGroup        = ballotGroup;
+        this.location           = location;
     }
 
     public Ballot(final BallotDTO ballotDTO) {
@@ -72,6 +76,7 @@ public class Ballot extends ErrorProneEntity {
         this.downVoteCount      = ballotDTO.getDownVoteCount();
         this.reasonsForBallot   = ballotDTO.getReasonsForBallot();
         this.ballotGroup        = ballotDTO.getBallotGroup();
+        this.location           = ballotDTO.getLocation();
     }
 
     public static Ballot from(final BallotDTO ballotDTO) {

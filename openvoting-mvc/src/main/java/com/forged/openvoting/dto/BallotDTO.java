@@ -3,6 +3,7 @@ package com.forged.openvoting.dto;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.forged.openvoting.voting_system.data.Ballot;
 import com.forged.openvoting.voting_system.data.BallotGroup;
+import com.forged.openvoting.voting_system.data.Location;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
@@ -31,6 +32,8 @@ public class BallotDTO {
 
     private BallotGroup ballotGroup;
 
+    private Location location;
+
     public BallotDTO() {
         upVoteCount         = 0L;
         downVoteCount       = 0L;
@@ -40,6 +43,7 @@ public class BallotDTO {
         summary             = "";
         reasonsForBallot    = new HashSet<String>();
         ballotGroup         = new BallotGroup();
+        location            = new Location();
     }
 
     public BallotDTO(final Ballot ballot) {
@@ -52,6 +56,7 @@ public class BallotDTO {
         this.downVoteCount      = ballot.getDownVoteCount();
         this.reasonsForBallot   = ballot.getReasonsForBallot();
         this.ballotGroup        = ballot.getBallotGroup();
+        this.location           = ballot.getLocation();
     }
 
     public void setId(String id) {
@@ -128,5 +133,9 @@ public class BallotDTO {
 
     public BallotGroup getBallotGroup() {
         return ballotGroup;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 }
