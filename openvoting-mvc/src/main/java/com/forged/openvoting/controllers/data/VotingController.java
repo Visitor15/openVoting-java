@@ -15,8 +15,9 @@ import java.util.UUID;
 /**
  * Created by visitor15 on 7/25/15.
  */
-@Controller(value = "/vote-action")
-public class VoteDataController {
+@Controller
+@RequestMapping(value = "/voteAction")
+public class VotingController {
 
     @Autowired
     VotingService votingService;
@@ -25,14 +26,14 @@ public class VoteDataController {
     VoteDataAccessor voteDataAccessor;
 
     @ResponseBody
-    @RequestMapping(value = "/vote/{voteId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/updateVote/{voteId}", method = RequestMethod.PUT)
     public VotingResult vote(@PathVariable String voteId,
                              @RequestBody Vote vote) {
         return votingService.vote(voteId, vote);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/vote/submit", method = RequestMethod.POST)
+    @RequestMapping(value = "/submitVote", method = RequestMethod.POST)
     public VoteSubmissionResult submitVote(@RequestBody Vote vote) {
         return votingService.submitVote(vote);
     }
@@ -44,9 +45,8 @@ public class VoteDataController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/vote/initiateVote", method = RequestMethod.GET)
+    @RequestMapping(value = "/emptyVote", method = RequestMethod.GET)
     public Vote startVoting() {
-
         return new Vote(UUID.randomUUID().toString(), "", "", new Date());
     }
 }

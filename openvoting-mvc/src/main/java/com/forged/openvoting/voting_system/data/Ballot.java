@@ -2,7 +2,6 @@ package com.forged.openvoting.voting_system.data;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.forged.openvoting.dto.BallotDTO;
-import com.forged.openvoting.voting_system.factories.BallotGroupFactory;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
@@ -16,22 +15,23 @@ import java.util.Set;
 public class Ballot {
 
     @Id
-    private String id;
+    public String id;
 
-    private final Long upVoteCount;
-    private final Long downVoteCount;
+    private Long upVoteCount;
+    private Long downVoteCount;
 
-    private final Date creationDate;
+    private Date creationDate;
 
-    private final String title;
-    private final String description;
-    private final String summary;
+    private String title;
+    private String description;
+    private String summary;
 
-    private final Set<String> reasonsForBallot;
+    private Set<String> reasonsForBallot;
 
-    private final BallotGroup ballotGroup;
+    private BallotGroup ballotGroup;
 
     public Ballot() {
+        id = "";
         upVoteCount = 0L;
         downVoteCount = 0L;
         creationDate = new Date();
@@ -39,7 +39,7 @@ public class Ballot {
         description = "";
         summary = "";
         reasonsForBallot = new HashSet<String>();
-        ballotGroup = BallotGroupFactory.buildPublicBallotGroup();
+        ballotGroup = new BallotGroup();
     }
 
     public Ballot(final String id,
@@ -49,7 +49,8 @@ public class Ballot {
                   final Date creationDate,
                   final Long upVoteCount,
                   final Long downVoteCount,
-                  final BallotGroup ballotGroup) {
+                  final BallotGroup ballotGroup,
+                  final Set<String> reasonsForBallot) {
         this.id                 = id;
         this.title              = title;
         this.description        = description;
@@ -57,7 +58,7 @@ public class Ballot {
         this.creationDate       = creationDate;
         this.upVoteCount        = upVoteCount;
         this.downVoteCount      = downVoteCount;
-        this.reasonsForBallot   = new HashSet<String>();
+        this.reasonsForBallot   = reasonsForBallot;
         this.ballotGroup        = ballotGroup;
     }
 
@@ -81,35 +82,71 @@ public class Ballot {
         return id;
     }
 
-    public String getTitle() {
-        return title;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Long getUpVoteCount() {
         return upVoteCount;
     }
 
+    public void setUpVoteCount(Long upVoteCount) {
+        this.upVoteCount = upVoteCount;
+    }
+
     public Long getDownVoteCount() {
         return downVoteCount;
+    }
+
+    public void setDownVoteCount(Long downVoteCount) {
+        this.downVoteCount = downVoteCount;
     }
 
     public Date getCreationDate() {
         return creationDate;
     }
 
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getSummary() {
         return summary;
     }
 
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
     public Set<String> getReasonsForBallot() {
         return reasonsForBallot;
     }
 
+    public void setReasonsForBallot(Set<String> reasonsForBallot) {
+        this.reasonsForBallot = reasonsForBallot;
+    }
+
     public BallotGroup getBallotGroup() {
         return ballotGroup;
+    }
+
+    public void setBallotGroup(BallotGroup ballotGroup) {
+        this.ballotGroup = ballotGroup;
     }
 }

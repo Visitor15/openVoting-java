@@ -45,7 +45,8 @@ public class BallotBuilder implements Builder<Ballot> {
                 creationDate,
                 upVoteCount,
                 downVoteCount,
-                ballotGroup);
+                ballotGroup,
+                reasonForBallot);
     }
 
     public BallotBuilder setId(final String id) {

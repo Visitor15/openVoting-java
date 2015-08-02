@@ -20,7 +20,8 @@ public class BallotDataAccessor implements DataAccessor<Ballot> {
 
     @Override
     public Ballot save(Ballot ballot) {
-        return null;
+        mongoTemplate.save(ballot, collectionName);
+        return ballot;
     }
 
     @Override

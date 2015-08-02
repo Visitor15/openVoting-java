@@ -3,9 +3,11 @@ package com.forged.openvoting.dto;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.forged.openvoting.voting_system.data.Ballot;
 import com.forged.openvoting.voting_system.data.BallotGroup;
+import com.forged.openvoting.voting_system.factories.BallotGroupFactory;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -29,6 +31,17 @@ public class BallotDTO {
     private Set<String> reasonsForBallot;
 
     private BallotGroup ballotGroup;
+
+    public BallotDTO() {
+        upVoteCount         = 0L;
+        downVoteCount       = 0L;
+        creationDate        = new Date();
+        title               = "";
+        description         = "";
+        summary             = "";
+        reasonsForBallot    = new HashSet<String>();
+        ballotGroup         = new BallotGroup();
+    }
 
     public BallotDTO(final Ballot ballot) {
         this.id                 = ballot.getId();

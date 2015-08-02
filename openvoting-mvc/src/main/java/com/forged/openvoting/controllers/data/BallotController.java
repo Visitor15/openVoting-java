@@ -3,6 +3,7 @@ package com.forged.openvoting.controllers.data;
 import com.forged.openvoting.dto.BallotDTO;
 import com.forged.openvoting.dto.BallotSubmissionResultDTO;
 import com.forged.openvoting.voting_system.builders.BallotBuilder;
+import com.forged.openvoting.voting_system.data.BallotGroup;
 import com.forged.openvoting.voting_system.factories.BallotGroupFactory;
 import com.forged.openvoting.voting_system.service.BallotService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,8 @@ import java.util.UUID;
 /**
  * Created by visitor15 on 7/27/15.
  */
-@RestController(value = "/ballotAction")
+@Controller
+@RequestMapping(value = "/ballotAction")
 public class BallotController {
 
     @Autowired
@@ -35,10 +37,11 @@ public class BallotController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/get/emptyVote", method = RequestMethod.GET)
+    @RequestMapping(value = "/emptyBallot", method = RequestMethod.GET)
     public BallotDTO getEmptyBallot() {
+//        return new BallotDTO();
         return new BallotDTO(new BallotBuilder().builder()
-                .setBallotGroup(BallotGroupFactory.buildPublicBallotGroup())
+                .setBallotGroup(new BallotGroup())
                 .setCreationDate(new Date())
                 .setTitle("Empty Ballot")
                 .setDescription("Ballot description for an empty ballot!")

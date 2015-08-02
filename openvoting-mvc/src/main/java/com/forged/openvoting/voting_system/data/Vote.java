@@ -11,13 +11,33 @@ import java.util.Date;
 @JsonAutoDetect
 public class Vote {
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setVoteOwner(String voteOwner) {
+        this.voteOwner = voteOwner;
+    }
+
+    public void setBallotId(String ballotId) {
+        this.ballotId = ballotId;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Vote() {
+
+    }
+
     @Id
-    private final String id;
+    private String id;
 
-    private final String voteOwner;
-    private final String ballotId;
+    private String voteOwner;
+    private String ballotId;
 
-    private final Date creationDate;
+    private Date creationDate;
 
     public Vote(final String id,
                 final String voteOwner,
@@ -27,6 +47,15 @@ public class Vote {
         this.voteOwner      = voteOwner;
         this.ballotId       = ballotId;
         this.creationDate   = creationDate;
+    }
+
+    public Vote(final String id,
+                final String voteOwner,
+                final String ballotId) {
+        this.id             = id;
+        this.voteOwner      = voteOwner;
+        this.ballotId       = ballotId;
+        this.creationDate   = new Date();
     }
 
     public String getId() {
