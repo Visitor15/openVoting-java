@@ -1,7 +1,6 @@
 package com.forged.openvoting.config;
 
 import com.forged.openvoting.Application;
-import com.forged.openvoting.voting_system.validation.BallotSubmissionValidator;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

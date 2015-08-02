@@ -4,7 +4,6 @@ import com.forged.openvoting.dto.BallotDTO;
 import com.forged.openvoting.dto.BallotSubmissionResultDTO;
 import com.forged.openvoting.voting_system.builders.BallotBuilder;
 import com.forged.openvoting.voting_system.data.BallotGroup;
-import com.forged.openvoting.voting_system.factories.BallotGroupFactory;
 import com.forged.openvoting.voting_system.service.BallotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,7 +38,6 @@ public class BallotController {
     @ResponseBody
     @RequestMapping(value = "/emptyBallot", method = RequestMethod.GET)
     public BallotDTO getEmptyBallot() {
-//        return new BallotDTO();
         return new BallotDTO(new BallotBuilder().builder()
                 .setBallotGroup(new BallotGroup())
                 .setCreationDate(new Date())

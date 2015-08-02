@@ -3,7 +3,6 @@ package com.forged.openvoting.dto;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.forged.openvoting.voting_system.data.Ballot;
 import com.forged.openvoting.voting_system.data.BallotGroup;
-import com.forged.openvoting.voting_system.factories.BallotGroupFactory;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
