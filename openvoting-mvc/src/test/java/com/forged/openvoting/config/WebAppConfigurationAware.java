@@ -20,7 +20,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
         JpaConfig.class,
         MongoConfig.class,
         NoCsrfSecurityConfig.class,
-        WebMvcConfig.class
+        WebMvcConfig.class,
+        DataValidatorConfig.class
 })
 public abstract class WebAppConfigurationAware {
 

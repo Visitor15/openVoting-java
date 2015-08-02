@@ -2,6 +2,7 @@ package com.forged.openvoting.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.forged.openvoting.voting_system.data.Ballot;
+import com.forged.openvoting.voting_system.data.BallotGroup;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
@@ -16,32 +17,77 @@ public class BallotDTO {
     @Id
     private String id;
 
-    private final Long upVoteCount;
-    private final Long downVoteCount;
+    private Long upVoteCount;
+    private Long downVoteCount;
 
-    private final Date creationDate;
+    private Date creationDate;
 
-    private final String description;
-    private final String summary;
+    private String title;
+    private String description;
+    private String summary;
 
-    private final Set<String> reasonsForBallot;
+    private Set<String> reasonsForBallot;
 
-    private BallotDTO(final Ballot ballot) {
+    private BallotGroup ballotGroup;
+
+    public BallotDTO(final Ballot ballot) {
         this.id                 = ballot.getId();
+        this.title              = ballot.getTitle();
         this.description        = ballot.getDescription();
         this.summary            = ballot.getSummary();
         this.creationDate       = ballot.getCreationDate();
         this.upVoteCount        = ballot.getUpVoteCount();
         this.downVoteCount      = ballot.getDownVoteCount();
         this.reasonsForBallot   = ballot.getReasonsForBallot();
+        this.ballotGroup        = ballot.getBallotGroup();
     }
 
-    public static BallotDTO from(final Ballot ballot) {
-        return new BallotDTO(ballot);
+    public void setId(String id) {
+        this.id = id;
     }
+
+    public void setUpVoteCount(Long upVoteCount) {
+        this.upVoteCount = upVoteCount;
+    }
+
+    public void setDownVoteCount(Long downVoteCount) {
+        this.downVoteCount = downVoteCount;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public void setReasonsForBallot(Set<String> reasonsForBallot) {
+        this.reasonsForBallot = reasonsForBallot;
+    }
+
+    public void setBallotGroup(BallotGroup ballotGroup) {
+        this.ballotGroup = ballotGroup;
+    }
+
+//    public static BallotDTO from(final Ballot ballot) {
+//        return new BallotDTO(ballot);
+//    }
 
     public String getId() {
         return id;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public Long getUpVoteCount() {
@@ -66,5 +112,9 @@ public class BallotDTO {
 
     public Set<String> getReasonsForBallot() {
         return reasonsForBallot;
+    }
+
+    public BallotGroup getBallotGroup() {
+        return ballotGroup;
     }
 }

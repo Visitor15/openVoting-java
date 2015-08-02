@@ -1,5 +1,6 @@
 package com.forged.openvoting.config;
 
+import com.forged.openvoting.dao.BallotDataAccessor;
 import com.mongodb.MongoClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -53,5 +54,10 @@ class MongoConfig {
         MappingMongoConverter converter = new MappingMongoConverter(mongoDbFactory(), mongoMappingContext());
         converter.setTypeMapper(mongoTypeMapper());
         return converter;
+    }
+
+    @Bean(name = "ballotDataAccessor")
+    public BallotDataAccessor ballotDataAccessor() {
+        return new BallotDataAccessor();
     }
 }

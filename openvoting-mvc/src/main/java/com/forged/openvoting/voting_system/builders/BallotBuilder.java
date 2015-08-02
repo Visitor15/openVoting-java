@@ -1,17 +1,20 @@
 package com.forged.openvoting.voting_system.builders;
 
 import com.forged.openvoting.voting_system.data.Ballot;
+import com.forged.openvoting.voting_system.data.BallotGroup;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by visitor15 on 7/27/15.
  */
 public class BallotBuilder implements Builder<Ballot> {
 
-    private static BallotBuilder instance;
+    private BallotBuilder instance;
 
     private String id;
+    private String title;
     private String description;
     private String summary;
 
@@ -20,11 +23,15 @@ public class BallotBuilder implements Builder<Ballot> {
 
     private Date creationDate;
 
-    public static BallotBuilder builder() {
+    private Set<String> reasonForBallot;
+
+    private BallotGroup ballotGroup;
+
+    public BallotBuilder builder() {
         return (instance == null) ? new BallotBuilder() : instance;
     }
 
-    private BallotBuilder() {
+    public BallotBuilder() {
         instance = this;
     }
 
@@ -32,15 +39,22 @@ public class BallotBuilder implements Builder<Ballot> {
     public Ballot build() {
         return new Ballot(
                 id,
+                title,
                 description,
                 summary,
                 creationDate,
                 upVoteCount,
-                downVoteCount);
+                downVoteCount,
+                ballotGroup);
     }
 
     public BallotBuilder setId(final String id) {
         this.id = id;
+        return instance;
+    }
+
+    public BallotBuilder setTitle(final String title) {
+        this.title = title;
         return instance;
     }
 
@@ -66,6 +80,16 @@ public class BallotBuilder implements Builder<Ballot> {
 
     public BallotBuilder setCreationDate(final Date creationDate) {
         this.creationDate = creationDate;
+        return instance;
+    }
+
+    public BallotBuilder setBallotGroup(final BallotGroup ballotGroup) {
+        this.ballotGroup = ballotGroup;
+        return instance;
+    }
+
+    public BallotBuilder setReasonForBallot(final Set<String> reasonForBallot) {
+        this.reasonForBallot = reasonForBallot;
         return instance;
     }
 }
