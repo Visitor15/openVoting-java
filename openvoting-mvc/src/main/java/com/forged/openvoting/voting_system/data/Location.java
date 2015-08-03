@@ -11,7 +11,7 @@ public class Location {
     private String name;
 
     @GeoSpatialIndexed
-    private double[] location;
+    private double[] coordinates;
 
     public Location() {
         this.id = "";
@@ -25,8 +25,8 @@ public class Location {
         initLocationList(lat, lon);
     }
 
-    public double[] getLocation() {
-        return this.location;
+    public double[] getCoordinates() {
+        return this.coordinates;
     }
 
     public String getName() {
@@ -46,16 +46,16 @@ public class Location {
     }
 
     public void setLatitude(final double latitude) {
-        this.location[0] = latitude;
+        this.coordinates[0] = latitude;
     }
 
     public void setLongitude(final double longitude) {
-        this.location[1] = longitude;
+        this.coordinates[1] = longitude;
     }
 
     private void initLocationList(final double lat, final double lon) {
-        this.location = new double[2];
-        this.location[0] = lat;
-        this.location[1] = lon;
+        this.coordinates = new double[2];
+        this.coordinates[0] = lat;
+        this.coordinates[1] = lon;
     }
 }

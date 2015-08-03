@@ -2,6 +2,7 @@ package com.forged.openvoting.dao;
 
 import com.forged.openvoting.voting_system.data.Ballot;
 import com.forged.openvoting.voting_system.data.Location;
+import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.geo.*;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.query.NearQuery;
 import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.Iterator;
+import java.util.UUID;
 
 /**
  * Created by visitor15 on 7/26/15.

@@ -12,6 +12,8 @@ import java.util.List;
 @JsonAutoDetect
 public class BallotSubmissionResultDTO {
 
+    private String ballotId;
+
     private final ResultType resultType;
 
     private final List<String> messages;
@@ -24,6 +26,14 @@ public class BallotSubmissionResultDTO {
     public BallotSubmissionResultDTO(final ResultType resultType, final String message) {
         this.resultType = resultType;
         this.messages = new LinkedList<String>() {{ add(message); }};
+    }
+
+    public void setBallotId(final String id) {
+        this.ballotId = id;
+    }
+
+    public String getBallotId() {
+        return this.ballotId;
     }
 
     public ResultType getResultType() {

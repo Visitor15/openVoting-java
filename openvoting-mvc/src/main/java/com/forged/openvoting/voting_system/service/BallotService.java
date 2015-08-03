@@ -7,8 +7,11 @@ import com.forged.openvoting.support.web.ResultType;
 import com.forged.openvoting.voting_system.data.Ballot;
 import com.forged.openvoting.voting_system.data.BallotSubmissionResult;
 import com.forged.openvoting.voting_system.validation.BallotSubmissionValidator;
+import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 /**
  * Created by visitor15 on 7/27/15.
@@ -37,6 +40,9 @@ public class BallotService {
     public BallotSubmissionResultDTO submitBallotForVoting(final BallotDTO ballotDTO) {
         BallotSubmissionResultDTO ballotSubmissionResultDTO;
         Ballot ballotToSubmit = Ballot.from(ballotDTO);
+        if(Strings.isNullOrEmpty(ballotToSubmit.getId())) {
+            ballotToSubmit.setId(UUID.randomUUID().toString());
+        }
         if(!ballotSubmissionValidator.validate(ballotToSubmit)) {
             ballotSubmissionResultDTO = generateFailedBallotSubmissionResponse(ballotToSubmit);
         } else {
@@ -53,6 +59,7 @@ public class BallotService {
 
     private BallotSubmissionResultDTO generateSucceededBallotSubmissionResponse(final Ballot ballotDTO) {
         BallotSubmissionResultDTO ballotSubmissionResultDTO = new BallotSubmissionResultDTO(ResultType.SUCCESS, "Successfully submitted ballot");
+        ballotSubmissionResultDTO.setBallotId(ballotDTO.getId());
         return ballotSubmissionResultDTO;
     }
 }

@@ -30,8 +30,6 @@ public class Ballot extends LocationAwareEntity {
 
     private BallotGroup ballotGroup;
 
-    private Location location;
-
     public Ballot() {
         id = "";
         upVoteCount = 0L;
@@ -63,7 +61,7 @@ public class Ballot extends LocationAwareEntity {
         this.downVoteCount      = downVoteCount;
         this.reasonsForBallot   = reasonsForBallot;
         this.ballotGroup        = ballotGroup;
-        this.location           = location;
+        setLocation(location.getCoordinates());
     }
 
     public Ballot(final BallotDTO ballotDTO) {
@@ -76,7 +74,7 @@ public class Ballot extends LocationAwareEntity {
         this.downVoteCount      = ballotDTO.getDownVoteCount();
         this.reasonsForBallot   = ballotDTO.getReasonsForBallot();
         this.ballotGroup        = ballotDTO.getBallotGroup();
-        this.location           = ballotDTO.getLocation();
+        setLocation(ballotDTO.getLocation().getCoordinates());
     }
 
     public static Ballot from(final BallotDTO ballotDTO) {
